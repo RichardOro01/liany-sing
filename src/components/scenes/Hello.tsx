@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Dialog from "../Dialog";
 import Richard from "../Richard";
 
 const Hello = () => {
+  const [dialoging, setDialoging] = useState(false);
   return (
     <div className="flex flex-col flex-1 items-center justify-center">
-      <Richard />
+      <Richard state={dialoging ? "talking" : "smiling"} />
       <Dialog
         texts={[
           "Hola Liany!",
@@ -13,6 +14,7 @@ const Hello = () => {
           "He conseguido un lugar para que demuestres tu talento!",
           "Vamos!",
         ]}
+        {...{ setDialoging }}
       />
     </div>
   );

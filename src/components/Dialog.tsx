@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 
 interface DialogProps {
   texts: string[];
+  setDialoging: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Dialog: React.FC<DialogProps> = ({ texts }) => {
+const Dialog: React.FC<DialogProps> = ({ texts, setDialoging }) => {
   const [currentText, setCurrentText] = useState(0);
   const [showingText, setShowingText] = useState("");
   const [timer, setTimer] = useState<NodeJS.Timer>();
@@ -16,8 +17,10 @@ const Dialog: React.FC<DialogProps> = ({ texts }) => {
 
   useEffect(() => {
     if (showingText.length < texts[currentText].length) {
+      setDialoging(true);
       startTimer();
     } else {
+      setDialoging(false);
       setTimer(setTimeout(nextText, 2000));
     }
   }, [showingText]);
