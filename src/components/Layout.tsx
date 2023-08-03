@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 const Layout = () => {
   const scene = useSelector((state: RootState) => state.scene.current);
   return (
-    <div>
+    <div className="flex flex-col flex-1">
       {!scene && <MainMenu />}
       {scene === "hello" && <Hello />}
       {scene === "singing" && <Singing />}

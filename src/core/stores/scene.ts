@@ -7,7 +7,7 @@ export interface SceneState {
 }
 
 const initialState: SceneState = {
-  current: "",
+  current: "hello",
 };
 
 export const sceneSlice = createSlice({

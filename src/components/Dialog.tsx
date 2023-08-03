@@ -18,7 +18,7 @@ const Dialog: React.FC<DialogProps> = ({ texts }) => {
     if (showingText.length < texts[currentText].length) {
       startTimer();
     } else {
-      setTimer(setTimeout(nextText, 1000));
+      setTimer(setTimeout(nextText, 2000));
     }
   }, [showingText]);
 
@@ -60,7 +60,7 @@ const Dialog: React.FC<DialogProps> = ({ texts }) => {
 
   return (
     <div
-      className="fixed bottom-5 mx-5 p-4 border-2 shadow-lg rounded-lg bg-slate-50 w-11/12 min-h-[60px]"
+      className="fixed bottom-5 mx-5 p-4 border-2 shadow-lg rounded-lg bg-slate-50 w-11/12 min-h-[60px] z-40"
       onClick={skipTimer}
     >
       {showingText}

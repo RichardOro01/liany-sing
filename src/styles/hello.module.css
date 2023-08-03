@@ -1,0 +1,28 @@
+.hello {
+  transform-origin: 46px 28px;
+  animation: rotate-greeting 2s backwards ease-in-out;
+}
+
+@keyframes rotate-greeting {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(140deg);
+  }
+  35% {
+    transform: rotate(100deg);
+  }
+  50% {
+    transform: rotate(140deg);
+  }
+  65% {
+    transform: rotate(100deg);
+  }
+  80% {
+    transform: rotate(140deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

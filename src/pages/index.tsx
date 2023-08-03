@@ -8,7 +8,9 @@ export type Scene = "" | "hello" | "singing" | "question";
 export default function Home() {
   return (
     <Provider {...{ store }}>
-      <main className={`min-h-screen flex-col items-center justify-between`}>
+      <main
+        className={`min-h-screen flex flex-col items-center justify-between`}
+      >
         <Layout />
       </main>
     </Provider>
