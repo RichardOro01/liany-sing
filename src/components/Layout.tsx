@@ -5,6 +5,7 @@ import Question from "@/components/scenes/Question";
 import Singing from "@/components/scenes/Singing";
 import { RootState } from "@/core/stores/store";
 import { useSelector } from "react-redux";
+import Transition from "./Transition";
 
 const Layout = () => {
   const scene = useSelector((state: RootState) => state.scene.current);
@@ -14,6 +15,7 @@ const Layout = () => {
       {scene === "hello" && <Hello />}
       {scene === "singing" && <Singing />}
       {scene === "question" && <Question />}
+      <Transition />
     </div>
   );
 };

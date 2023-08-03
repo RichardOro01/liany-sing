@@ -63,16 +63,18 @@ const Richard: React.FC<RichardProps> = ({ state }) => {
 
   return (
     <div className="relative h-96 w-80">
-      <Image src={idle} alt="Richard" className="absolute" />
+      <Image src={idle} alt="Richard" className="absolute" draggable={false} />
       <Image
         src={arm}
         alt="arm"
         className={`absolute top-64 left-20 w-16 ${styles.hello}`}
+        draggable={false}
       />
       <Image
         src={currentMouth}
         alt="mouth"
         className={`absolute top-60 left-32 w-16`}
+        draggable={false}
       />
     </div>
   );

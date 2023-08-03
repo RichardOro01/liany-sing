@@ -4,10 +4,12 @@ import { Scene } from "../../pages/index";
 
 export interface SceneState {
   current: Scene;
+  transition: boolean;
 }
 
 const initialState: SceneState = {
   current: "",
+  transition: false,
 };
 
 export const sceneSlice = createSlice({
@@ -17,9 +19,12 @@ export const sceneSlice = createSlice({
     setScene: (state, action: PayloadAction<Scene>) => {
       state.current = action.payload;
     },
+    setTransition: (state, action: PayloadAction<boolean>) => {
+      state.transition = action.payload;
+    },
   },
 });
 
-export const { setScene } = sceneSlice.actions;
+export const { setScene, setTransition } = sceneSlice.actions;
 
 export default sceneSlice.reducer;

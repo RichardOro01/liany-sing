@@ -2,12 +2,17 @@ import React from "react";
 import styles from "../styles/neon.module.css";
 import { Button } from "antd";
 import { useDispatch } from "react-redux";
-import { setScene } from "@/core/stores/scene";
+import { setScene, setTransition } from "@/core/stores/scene";
 
 const MainMenu = () => {
   const dispatch = useDispatch();
   const handleStart = () => {
-    dispatch(setScene("hello"));
+    dispatch(setTransition(true));
+
+    setTimeout(() => {
+      dispatch(setScene("hello"));
+      dispatch(setTransition(false));
+    }, 1000);
   };
   return (
     <div className="flex flex-col items-center gap-8 p-4 py-8">
