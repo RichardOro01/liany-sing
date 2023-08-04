@@ -1,0 +1,6 @@
+.stage {
+  background-image: url("/stage.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}

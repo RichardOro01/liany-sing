@@ -1,0 +1,8 @@
+.right_forearm {
+  transform-origin: 18px 20px;
+  transform: rotate(10deg);
+}
+
+.left_forearm {
+  transform-origin: 24px 97px;
+}

@@ -10,7 +10,7 @@ import Transition from "./Transition";
 const Layout = () => {
   const scene = useSelector((state: RootState) => state.scene.current);
   return (
-    <div className="flex flex-col flex-1">
+    <div className="flex flex-col flex-1 w-full">
       {!scene && <MainMenu />}
       {scene === "hello" && <Hello />}
       {scene === "singing" && <Singing />}
