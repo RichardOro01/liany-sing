@@ -63,7 +63,7 @@ const Richard: React.FC<RichardProps> = ({ state, className }) => {
   };
 
   return (
-    <div className={`relative w-80 ${className}`}>
+    <div className={`relative w-80 h-96 ${className}`}>
       <Image src={idle} alt="Richard" className="absolute" draggable={false} />
       <Image
         src={arm}
