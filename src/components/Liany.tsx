@@ -74,7 +74,7 @@ const Liany: React.FC<RichardProps> = ({ state, className }) => {
       <Image
         src={arm}
         alt="arm"
-        className={`absolute top-64 left-[182px] w-20`}
+        className={`absolute top-64 left-[182px] w-20 ${styles.left_arm_playing}`}
         draggable={false}
       />
       <Image
@@ -104,13 +104,13 @@ const Liany: React.FC<RichardProps> = ({ state, className }) => {
       <Image
         src={rightForearm}
         alt="right forearm"
-        className={`absolute top-[350px] left-[75px] w-[113px] ${styles.right_forearm}`}
+        className={`absolute top-[350px] left-[75px] w-[113px] ${styles.right_forearm_playing}`}
         draggable={false}
       />
       <Image
         src={leftForearm}
         alt="left forearm"
-        className={`absolute top-[268px] left-[208px] w-[39px] ${styles.left_forearm}`}
+        className={`absolute top-[268px] left-[208px] w-[39px] ${styles.left_forearm_playing}`}
         draggable={false}
       />
 

@@ -77,7 +77,11 @@ const Dialog: React.FC<DialogProps> = ({ texts, setDialoging, options }) => {
         showingText.length === texts[currentText].length && (
           <div className="flex flex-row gap-4 w-full justify-end text-slate-500">
             {options.map((option, index) => (
-              <span key={`${index}-${option}`} onClick={option.action}>
+              <span
+                key={`${index}-${option}`}
+                onClick={option.action}
+                className="cursor-pointer"
+              >
                 {option.text}
               </span>
             ))}

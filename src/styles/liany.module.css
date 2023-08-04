@@ -6,3 +6,70 @@
 .left_forearm {
   transform-origin: 24px 97px;
 }
+
+.right_forearm_playing {
+  transform-origin: 18px 20px;
+  animation: right_forearm_playing 1s infinite linear;
+}
+
+.left_forearm_playing {
+  transform-origin: 24px 97px;
+  animation: left_forearm_playing 10s infinite linear;
+}
+
+.left_arm_playing {
+  transform-origin: 22px 20px;
+  animation: left_arm_playing 10s infinite linear;
+}
+
+@keyframes right_forearm_playing {
+  0% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+
+@keyframes left_forearm_playing {
+  0%,
+  20% {
+    transform: rotate(15deg) translate(0px, -20px);
+  }
+  25%,
+  45% {
+    transform: rotate(10deg) translate(0px, -20px);
+  }
+  50%,
+  70% {
+    transform: rotate(-10deg) translate(0px, 10px);
+  }
+  75%,
+  95% {
+    transform: rotate(10deg) translate(0px, -10px);
+  }
+  100% {
+    transform: rotate(15deg) translate(0px, -20px);
+  }
+}
+
+@keyframes left_arm_playing {
+  0%,
+  45% {
+    transform: rotate(-5deg) translate(0px, -16px);
+  }
+  50%,
+  70% {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+  75%,
+  95% {
+    transform: rotate(0deg) translate(0px, -10px);
+  }
+  100% {
+    transform: rotate(-5deg) translate(0px, -16px);
+  }
+}
