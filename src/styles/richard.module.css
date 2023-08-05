@@ -1,6 +1,7 @@
 .hello {
   transform-origin: 46px 28px;
   animation: rotate-greeting 2s backwards ease-in-out;
+  z-index: 30;
 }
 
 @keyframes rotate-greeting {
@@ -28,18 +29,53 @@
 }
 
 .happy {
-  animation: jump 2s infinite ease-in-out;
+  animation: jump 2s infinite;
 }
 
 @keyframes jump {
-  0% {
+  0%,
+  10% {
     transform: translateY(0px);
   }
 
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-70px);
   }
   100% {
     transform: translateY(0px);
+  }
+}
+
+.left_arm_happy {
+  transform-origin: 20px 28px;
+  animation: left_arm_happy 2s infinite ease-in-out;
+}
+
+@keyframes left_arm_happy {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-50deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.right_arm_happy {
+  transform-origin: 46px 28px;
+  animation: right_arm_happy 2s infinite ease-in-out;
+}
+
+@keyframes right_arm_happy {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(50deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

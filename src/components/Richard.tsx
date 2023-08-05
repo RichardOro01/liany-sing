@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import idle from "../assets/sprites/Richard/idle.png";
-import arm from "../assets/sprites/Richard/arm.png";
+import rightArm from "../assets/sprites/Richard/right arm.png";
+import leftArm from "../assets/sprites/Richard/left arm.png";
 import hair from "../assets/sprites/Richard/hair.png";
+import head from "../assets/sprites/Richard/head.png";
 import closedMouth from "../assets/sprites/mouth/closed mouth.png";
 import openMouth from "../assets/sprites/mouth/open mouth.png";
 import sadMouth from "../assets/sprites/mouth/sad mouth.png";
@@ -10,6 +12,8 @@ import smilingMouth from "../assets/sprites/mouth/smiling mouth.png";
 import styles from "../styles/richard.module.css";
 import openEyes from "@/assets/sprites/eyes/open.png";
 import closedEyes from "@/assets/sprites/eyes/closed.png";
+import happyEyes from "@/assets/sprites/eyes/happy.png";
+import cryEyes from "@/assets/sprites/eyes/cry.png";
 import { useSelector } from "react-redux";
 import { RootState } from "@/core/stores/store";
 
@@ -18,7 +22,13 @@ interface RichardProps {
   className?: string;
 }
 
-export type RichardState = "talking" | "smiling" | "sad" | "serious" | "happy";
+export type RichardState =
+  | "talking"
+  | "smiling"
+  | "sad"
+  | "serious"
+  | "happy"
+  | "cry";
 
 const Richard: React.FC<RichardProps> = ({ state, className }) => {
   const scene = useSelector((state: RootState) => state.scene.current);
@@ -45,9 +55,13 @@ const Richard: React.FC<RichardProps> = ({ state, className }) => {
         break;
       case "happy":
         clearInterval(blinkTimer);
-        setCurrentEyes(closedEyes);
+        setCurrentEyes(happyEyes);
         setCurrentMouth(smilingMouth);
-
+      case "cry":
+        setCurrentMouth(sadMouth);
+        clearInterval(blinkTimer);
+        setCurrentEyes(cryEyes);
+        break;
         break;
       default:
         setCurrentMouth(smilingMouth);
@@ -89,35 +103,54 @@ const Richard: React.FC<RichardProps> = ({ state, className }) => {
   };
 
   return (
-    <div className={`relative w-80 h-96 ${className} ${styles.happy}`}>
+    <div
+      className={`relative w-80 h-96 ${className} ${
+        state === "happy" && styles.happy
+      }`}
+    >
       <Image src={idle} alt="Richard" className="absolute" draggable={false} />
-
       <Image
-        src={currentMouth}
-        alt="mouth"
-        className={`absolute top-60 left-32 w-16`}
-        draggable={false}
-      />
-      <Image
-        src={currentEyes}
-        alt="eyes"
-        className={`absolute top-32 left-20 w-44`}
-        draggable={false}
-      />
-      <Image
-        src={hair}
-        alt="hair"
-        className={`absolute top-0 left-0 w-[331px]`}
-        draggable={false}
-      />
-      <Image
-        src={arm}
+        src={rightArm}
         alt="arm"
         className={`absolute top-64 left-20 w-16 ${
           scene === "hello" ? styles.hello : ""
-        }`}
+        } ${state === "happy" && styles.right_arm_happy}`}
         draggable={false}
       />
+      <Image
+        src={leftArm}
+        alt="arm"
+        className={`absolute top-64 left-[181px] w-16 ${
+          scene === "hello" ? styles.hello : ""
+        } ${state === "happy" && styles.left_arm_happy}`}
+        draggable={false}
+      />
+      <div className="absolute top-[0px] w-[319px]">
+        <Image
+          src={head}
+          alt="head"
+          className={`absolute top-[94px] left-[51px] w-[232px]`}
+          draggable={false}
+        />
+        <Image
+          src={currentMouth}
+          alt="mouth"
+          className={`absolute top-60 left-32 w-16`}
+          draggable={false}
+        />
+        <Image
+          src={currentEyes}
+          alt="eyes"
+          className={`absolute top-32 left-20 w-44`}
+          draggable={false}
+        />
+        <Image
+          src={hair}
+          alt="hair"
+          className={`absolute top-0 left-0 w-[331px]`}
+          draggable={false}
+        />
+      </div>
     </div>
   );
 };

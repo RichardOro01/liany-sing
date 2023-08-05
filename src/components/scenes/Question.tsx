@@ -20,36 +20,42 @@ const Question = () => {
     setPreNo(true);
     setState("sad");
   };
-  const handleNo = () => {};
+  const handleNo = () => {
+    setState("cry");
+  };
   return (
     <div className="flex flex-col flex-1 items-center justify-center">
       <Richard state={dialoging ? "talking" : state} />
-      {!preNo && (
-        <Dialog
-          texts={[
-            "Vaya, de verdad que cantas lindo.",
-            "Solo quiero saber una cosa...",
-            "Podré escucharte cantar en la vida real estas vacaciones?",
-          ]}
-          {...{ setDialoging }}
-          options={[
-            { text: "Claro!", action: handleYes },
-            { text: "Nop", action: handlePreNo },
-          ]}
-        />
-      )}
-      {preNo && (
-        <Dialog
-          texts={["Oh, pues soy una persona triste :/"]}
-          {...{ setDialoging }}
-          options={[
-            { text: "Era broma, claro que sí!", action: handleYes },
-            {
-              text: "Lo siento, ponte a escuchar el audio repetido y ya.",
-              action: handlePreNo,
-            },
-          ]}
-        />
+      {state !== "happy" && state !== "cry" && (
+        <>
+          {!preNo && (
+            <Dialog
+              texts={[
+                "Vaya, de verdad que cantas lindo.",
+                "Solo quiero saber una cosa...",
+                "Podré escucharte cantar en la vida real estas vacaciones?",
+              ]}
+              {...{ setDialoging }}
+              options={[
+                { text: "Claro!", action: handleYes },
+                { text: "Nop", action: handlePreNo },
+              ]}
+            />
+          )}
+          {preNo && (
+            <Dialog
+              texts={["Oh, pues soy una persona triste :/"]}
+              {...{ setDialoging }}
+              options={[
+                { text: "Era broma, claro que sí!", action: handleYes },
+                {
+                  text: "Lo siento, ponte a escuchar el audio repetido y ya.",
+                  action: handleNo,
+                },
+              ]}
+            />
+          )}
+        </>
       )}
     </div>
   );
