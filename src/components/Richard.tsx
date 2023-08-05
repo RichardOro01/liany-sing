@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import idle from "../assets/sprites/Richard/idle.png";
-import rightArm from "../assets/sprites/Richard/right arm.png";
-import leftArm from "../assets/sprites/Richard/left arm.png";
-import hair from "../assets/sprites/Richard/hair.png";
-import head from "../assets/sprites/Richard/head.png";
-import closedMouth from "../assets/sprites/mouth/closed mouth.png";
-import openMouth from "../assets/sprites/mouth/open mouth.png";
-import sadMouth from "../assets/sprites/mouth/sad mouth.png";
-import smilingMouth from "../assets/sprites/mouth/smiling mouth.png";
+import idle from "../assets/sprites/Richard/idle.webp";
+import rightArm from "../assets/sprites/Richard/right arm.webp";
+import leftArm from "../assets/sprites/Richard/left arm.webp";
+import hair from "../assets/sprites/Richard/hair.webp";
+import head from "../assets/sprites/Richard/head.webp";
+import closedMouth from "../assets/sprites/mouth/closed mouth.webp";
+import openMouth from "../assets/sprites/mouth/open mouth.webp";
+import sadMouth from "../assets/sprites/mouth/sad mouth.webp";
+import smilingMouth from "../assets/sprites/mouth/smiling mouth.webp";
 import styles from "../styles/richard.module.css";
-import openEyes from "@/assets/sprites/eyes/open.png";
-import closedEyes from "@/assets/sprites/eyes/closed.png";
-import happyEyes from "@/assets/sprites/eyes/happy.png";
-import cryEyes from "@/assets/sprites/eyes/cry.png";
+import openEyes from "@/assets/sprites/eyes/open.webp";
+import closedEyes from "@/assets/sprites/eyes/closed.webp";
+import happyEyes from "@/assets/sprites/eyes/happy.webp";
+import cryEyes from "@/assets/sprites/eyes/cry.webp";
 import { useSelector } from "react-redux";
 import { RootState } from "@/core/stores/store";
 
@@ -121,8 +121,8 @@ const Richard: React.FC<RichardProps> = ({ state, className }) => {
         src={leftArm}
         alt="arm"
         className={`absolute top-64 left-[181px] w-16 ${
-          scene === "hello" ? styles.hello : ""
-        } ${state === "happy" && styles.left_arm_happy}`}
+          state === "happy" && styles.left_arm_happy
+        }`}
         draggable={false}
       />
       <div className="absolute top-[0px] w-[319px]">

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/stage.module.css";
-import micro from "@/assets/micro.png";
+import micro from "@/assets/micro.webp";
 import Liany, { LianyState } from "../Liany";
 import { Button } from "antd";
 import JSConfetti from "js-confetti";

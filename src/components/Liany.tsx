@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import idle from "../assets/sprites/Liany/idle.png";
-import arm from "../assets/sprites/Liany/arm.png";
-import rightForearm from "../assets/sprites/Liany/right forearm.png";
-import leftForearm from "../assets/sprites/Liany/left forearm.png";
-import head from "../assets/sprites/Liany/head.png";
-import hair from "../assets/sprites/Liany/hair.png";
-import eyes from "../assets/sprites/eyes/open.png";
+import idle from "../assets/sprites/Liany/idle.webp";
+import arm from "../assets/sprites/Liany/arm.webp";
+import rightForearm from "../assets/sprites/Liany/right forearm.webp";
+import leftForearm from "../assets/sprites/Liany/left forearm.webp";
+import head from "../assets/sprites/Liany/head.webp";
+import hair from "../assets/sprites/Liany/hair.webp";
+import eyes from "../assets/sprites/eyes/open.webp";
 import guitar from "../assets/guitar.webp";
-import closedMouth from "../assets/sprites/mouth/closed mouth.png";
-import openMouth from "../assets/sprites/mouth/open mouth.png";
-import semiopenMouth from "../assets/sprites/mouth/semiopen mouth.png";
-import sadMouth from "../assets/sprites/mouth/sad mouth.png";
-import smilingMouth from "../assets/sprites/mouth/smiling mouth.png";
+import closedMouth from "../assets/sprites/mouth/closed mouth.webp";
+import openMouth from "../assets/sprites/mouth/open mouth.webp";
+import semiopenMouth from "../assets/sprites/mouth/semiopen mouth.webp";
+import sadMouth from "../assets/sprites/mouth/sad mouth.webp";
+import smilingMouth from "../assets/sprites/mouth/smiling mouth.webp";
 import styles from "../styles/liany.module.css";
 
 interface LianyProps {
