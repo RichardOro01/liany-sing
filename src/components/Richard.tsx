@@ -19,7 +19,9 @@ import { RootState } from "@/core/stores/store";
 
 interface RichardProps {
   state: RichardState;
+  greeting?: boolean;
   className?: string;
+  onLoad: () => void;
 }
 
 export type RichardState =
@@ -30,7 +32,13 @@ export type RichardState =
   | "happy"
   | "cry";
 
-const Richard: React.FC<RichardProps> = ({ state, className }) => {
+const Richard: React.FC<RichardProps> = ({
+  state,
+  className,
+  greeting,
+  onLoad,
+}) => {
+  const [loaded, setLoaded] = useState<number>(0);
   const scene = useSelector((state: RootState) => state.scene.current);
   const [currentMouth, setCurrentMouth] =
     useState<StaticImageData>(smilingMouth);
@@ -102,20 +110,37 @@ const Richard: React.FC<RichardProps> = ({ state, className }) => {
     setTimer(void 0);
   };
 
+  const handleLoad = () => {
+    setLoaded((loaded) => loaded + 1);
+  };
+
+  useEffect(() => {
+    if (loaded === 16) {
+      onLoad();
+    }
+  }, [loaded]);
+
   return (
     <div
       className={`relative w-80 h-96 ${className} ${
         state === "happy" && styles.happy
       }`}
     >
-      <Image src={idle} alt="Richard" className="absolute" draggable={false} />
+      <Image
+        src={idle}
+        alt="Richard"
+        className="absolute"
+        draggable={false}
+        onLoad={handleLoad}
+      />
       <Image
         src={rightArm}
         alt="arm"
         className={`absolute top-64 left-20 w-16 ${
-          scene === "hello" ? styles.hello : ""
+          greeting ? styles.hello : ""
         } ${state === "happy" && styles.right_arm_happy}`}
         draggable={false}
+        onLoad={handleLoad}
       />
       <Image
         src={leftArm}
@@ -124,6 +149,7 @@ const Richard: React.FC<RichardProps> = ({ state, className }) => {
           state === "happy" && styles.left_arm_happy
         }`}
         draggable={false}
+        onLoad={handleLoad}
       />
       <div className="absolute top-[0px] w-[319px]">
         <Image
@@ -131,24 +157,91 @@ const Richard: React.FC<RichardProps> = ({ state, className }) => {
           alt="head"
           className={`absolute top-[94px] left-[51px] w-[232px]`}
           draggable={false}
+          onLoad={handleLoad}
         />
         <Image
           src={currentMouth}
           alt="mouth"
           className={`absolute top-60 left-32 w-16`}
           draggable={false}
+          onLoad={handleLoad}
         />
         <Image
           src={currentEyes}
           alt="eyes"
           className={`absolute top-32 left-20 w-44`}
           draggable={false}
+          onLoad={handleLoad}
         />
         <Image
           src={hair}
           alt="hair"
           className={`absolute top-0 left-0 w-[331px]`}
           draggable={false}
+          onLoad={handleLoad}
+        />
+        <Image
+          src={openEyes}
+          alt="hidden"
+          className={`w-0`}
+          draggable={false}
+          onLoad={handleLoad}
+        />
+        <Image
+          src={closedEyes}
+          alt="hidden"
+          className={`w-0`}
+          draggable={false}
+          onLoad={handleLoad}
+        />
+        <Image
+          src={cryEyes}
+          alt="hidden"
+          className={`w-0`}
+          draggable={false}
+          onLoad={handleLoad}
+        />
+        <Image
+          src={happyEyes}
+          alt="hidden"
+          className={`w-0`}
+          draggable={false}
+          onLoad={handleLoad}
+        />
+        <Image
+          src={openEyes}
+          alt="hidden"
+          className={`w-0`}
+          draggable={false}
+          onLoad={handleLoad}
+        />
+        <Image
+          src={closedMouth}
+          alt="hidden"
+          className={`w-0`}
+          draggable={false}
+          onLoad={handleLoad}
+        />
+        <Image
+          src={openMouth}
+          alt="hidden"
+          className={`w-0`}
+          draggable={false}
+          onLoad={handleLoad}
+        />
+        <Image
+          src={sadMouth}
+          alt="hidden"
+          className={`w-0`}
+          draggable={false}
+          onLoad={handleLoad}
+        />
+        <Image
+          src={smilingMouth}
+          alt="hidden"
+          className={`w-0`}
+          draggable={false}
+          onLoad={handleLoad}
         />
       </div>
     </div>

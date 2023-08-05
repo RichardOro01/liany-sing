@@ -11,7 +11,6 @@ const MainMenu = () => {
 
     setTimeout(() => {
       dispatch(setScene("hello"));
-      dispatch(setTransition(false));
     }, 1000);
   };
   return (
