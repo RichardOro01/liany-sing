@@ -9,46 +9,84 @@
 
 .right_forearm_playing {
   transform-origin: 18px 20px;
-  animation: right_forearm_playing 1s infinite linear;
+  animation: right_forearm_start_playing 0.5s forwards linear,
+    right_forearm_playing 1.1s infinite linear;
+  animation-delay: 0s, 1.5s;
 }
 
 .left_forearm_playing {
   transform-origin: 24px 97px;
-  animation: left_forearm_playing 10s infinite linear;
+  animation: left_forearm_start_playing 0.5s forwards linear,
+    left_forearm_playing 20.5s forwards linear,
+    left_forearm_playing 20s forwards linear;
+
+  animation-delay: 0s, 1.5s, 22.5s;
 }
 
 .left_arm_playing {
   transform-origin: 22px 20px;
-  animation: left_arm_playing 10s infinite linear;
+  animation: left_arm_start_playing 0.5s forwards linear,
+    left_arm_playing 20.5s forwards linear, left_arm_playing 20s forwards linear;
+  animation-delay: 0s, 1.5s, 22.5s;
+}
+
+@keyframes right_forearm_start_playing {
+  to {
+    transform: rotate(-10deg);
+  }
 }
 
 @keyframes right_forearm_playing {
   0% {
-    transform: rotate(-10deg);
+    transform: rotate(-8deg);
   }
-  50% {
+  18% {
     transform: rotate(15deg);
   }
+  36% {
+    transform: rotate(-5deg);
+  }
+  54% {
+    transform: rotate(10deg);
+  }
+  72% {
+    transform: rotate(-5deg);
+  }
+  90% {
+    transform: rotate(10deg);
+  }
   100% {
-    transform: rotate(-10deg);
+    transform: rotate(-8deg);
+  }
+}
+
+@keyframes left_forearm_start_playing {
+  to {
+    transform: rotate(15deg) translate(0px, -20px);
+  }
+}
+
+@keyframes left_arm_start_playing {
+  to {
+    transform: rotate(-5deg) translate(0px, -16px);
   }
 }
 
 @keyframes left_forearm_playing {
   0%,
-  20% {
+  23% {
     transform: rotate(15deg) translate(0px, -20px);
   }
   25%,
-  45% {
+  48% {
     transform: rotate(10deg) translate(0px, -20px);
   }
   50%,
-  70% {
+  73% {
     transform: rotate(-10deg) translate(0px, 10px);
   }
   75%,
-  95% {
+  98% {
     transform: rotate(10deg) translate(0px, -10px);
   }
   100% {
@@ -58,15 +96,15 @@
 
 @keyframes left_arm_playing {
   0%,
-  45% {
+  48% {
     transform: rotate(-5deg) translate(0px, -16px);
   }
   50%,
-  70% {
+  73% {
     transform: rotate(0deg) translate(0px, 0px);
   }
   75%,
-  95% {
+  98% {
     transform: rotate(0deg) translate(0px, -10px);
   }
   100% {
