@@ -19,6 +19,7 @@ interface LianyProps {
   state: LianyState;
   className: string;
   setState: React.Dispatch<React.SetStateAction<LianyState>>;
+  onLoad: () => void;
 }
 
 export type LianyState =
@@ -29,7 +30,12 @@ export type LianyState =
   | "singing"
   | "finish singing";
 
-const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
+const Liany: React.FC<LianyProps> = ({
+  state,
+  className,
+  setState,
+  onLoad,
+}) => {
   const mouthTimes = [
     { mouth: closedMouth, time: 1500 },
     { mouth: openMouth, time: 500 }, //I
@@ -151,6 +157,7 @@ const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
   const [currentMouth, setCurrentMouth] =
     useState<StaticImageData>(smilingMouth);
   const [timer, setTimer] = useState<NodeJS.Timer>();
+  const [loaded, setLoaded] = useState<number>(0);
   const audio = useRef<HTMLAudioElement | undefined>(
     typeof Audio !== "undefined" ? new Audio("/audio/singing.mp3") : undefined
   );
@@ -218,9 +225,25 @@ const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
     setTimer(void 0);
   };
 
+  const handleLoad = () => {
+    setLoaded((loaded) => loaded + 1);
+  };
+
+  useEffect(() => {
+    if (loaded === 12) {
+      onLoad();
+    }
+  }, [loaded]);
+
   return (
     <div className={`relative w-80 ${className}`} onClick={playAudio}>
-      <Image src={idle} alt="Liany" className="absolute" draggable={false} />
+      <Image
+        src={idle}
+        alt="Liany"
+        className="absolute"
+        draggable={false}
+        onLoad={handleLoad}
+      />
       <Image
         src={arm}
         alt="arm"
@@ -228,30 +251,35 @@ const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
           state === "singing" ? styles.left_arm_playing : ""
         }`}
         draggable={false}
+        onLoad={handleLoad}
       />
       <Image
         src={head}
         alt="head"
         className={`absolute top-8 left-5 w-72`}
         draggable={false}
+        onLoad={handleLoad}
       />
       <Image
         src={eyes}
         alt="eyes"
         className={`absolute top-32 left-[72px] w-44`}
         draggable={false}
+        onLoad={handleLoad}
       />
       <Image
         src={hair}
         alt="hair"
         className={`absolute top-8 left-5 w-72`}
         draggable={false}
+        onLoad={handleLoad}
       />
       <Image
         src={guitar}
         alt="guitar"
         className={`absolute top-44 left-32 w-32 rotate-[36deg]`}
         draggable={false}
+        onLoad={handleLoad}
       />
       <Image
         src={rightForearm}
@@ -262,6 +290,7 @@ const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
             : styles.right_forearm
         }`}
         draggable={false}
+        onLoad={handleLoad}
       />
       <Image
         src={leftForearm}
@@ -272,6 +301,7 @@ const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
             : styles.left_forearm
         }`}
         draggable={false}
+        onLoad={handleLoad}
       />
 
       <Image
@@ -281,6 +311,28 @@ const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
           state === "singing" ? styles.mouth_singing : ""
         }`}
         draggable={false}
+        onLoad={handleLoad}
+      />
+      <Image
+        src={openMouth}
+        alt="mouth"
+        className="w-0"
+        draggable={false}
+        onLoad={handleLoad}
+      />
+      <Image
+        src={semiopenMouth}
+        alt="mouth"
+        className="w-0"
+        draggable={false}
+        onLoad={handleLoad}
+      />
+      <Image
+        src={closedMouth}
+        alt="mouth"
+        className="w-0"
+        draggable={false}
+        onLoad={handleLoad}
       />
     </div>
   );

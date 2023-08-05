@@ -12,7 +12,6 @@ const Hello = () => {
 
     setTimeout(() => {
       dispatch(setScene("singing"));
-      dispatch(setTransition(false));
     }, 1000);
   };
   return (
