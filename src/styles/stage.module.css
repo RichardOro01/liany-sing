@@ -4,3 +4,17 @@
   background-position: center;
   height: 100vh;
 }
+
+@keyframes fade-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade {
+  animation: fade-down 1s reverse forwards;
+}

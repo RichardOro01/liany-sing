@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/stage.module.css";
+import fontStyles from "@/styles/neon.module.css";
 import micro from "@/assets/micro.webp";
 import Liany, { LianyState } from "../Liany";
-import { Button } from "antd";
 import JSConfetti from "js-confetti";
 import { useDispatch } from "react-redux";
 import { setScene, setTransition } from "@/core/stores/scene";
@@ -15,7 +15,11 @@ const Singing = () => {
   const slaps = useRef<HTMLAudioElement | undefined>(
     typeof Audio !== "undefined" ? new Audio("/audio/slaps.mp3") : undefined
   );
-  useEffect(() => {}, []);
+  const handleSing = () => {
+    if (state !== "singing") {
+      setState("singing");
+    }
+  };
 
   useEffect(() => {
     if (state === "finish singing") {
@@ -56,13 +60,14 @@ const Singing = () => {
         alt="micro"
         className="absolute w-28 top-[330px] left-[40%] -translate-x-1/2"
       />
-      <Button
-        size="large"
-        className=" top-[60px] left-1/2 -translate-x-1/2 absolute "
-        onClick={() => setState("singing")}
+      <h1
+        className={`bottom-10 right-10 fixed animate-fade-down animate-delay-[3s] font-semibold text-5xl font-[cursive] ${
+          fontStyles.neonText2
+        } ${state === "singing" && styles.fade}`}
+        onClick={handleSing}
       >
         Sing
-      </Button>
+      </h1>
     </div>
   );
 };
