@@ -35,7 +35,7 @@ const Singing = () => {
     setTimeout(() => {
       dispatch(setScene("question"));
       dispatch(setTransition(false));
-    }, 1000);
+    }, 6000);
   };
 
   const throwConfetti = () => {
