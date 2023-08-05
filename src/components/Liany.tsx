@@ -21,7 +21,13 @@ interface LianyProps {
   setState: React.Dispatch<React.SetStateAction<LianyState>>;
 }
 
-export type LianyState = "talking" | "smiling" | "sad" | "serious" | "singing";
+export type LianyState =
+  | "talking"
+  | "smiling"
+  | "sad"
+  | "serious"
+  | "singing"
+  | "finish singing";
 
 const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
   const mouthTimes = [
@@ -152,7 +158,7 @@ const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
   const playAudio = () => {
     audio.current?.play();
     audio.current?.addEventListener("ended", () => {
-      setState("serious");
+      setState("finish singing");
     });
     singMouth(0);
   };
@@ -171,6 +177,7 @@ const Liany: React.FC<LianyProps> = ({ state, className, setState }) => {
         setCurrentMouth(sadMouth);
         break;
       case "serious":
+      case "finish singing":
         setCurrentMouth(closedMouth);
         break;
       case "smiling":

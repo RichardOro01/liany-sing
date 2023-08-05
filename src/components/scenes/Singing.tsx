@@ -1,18 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/stage.module.css";
 import micro from "@/assets/micro.png";
 import Liany, { LianyState } from "../Liany";
 import { Button } from "antd";
 import JSConfetti from "js-confetti";
+import { useDispatch } from "react-redux";
+import { setScene, setTransition } from "@/core/stores/scene";
 
 const Singing = () => {
+  let jsConfetti: JSConfetti;
+  const dispatch = useDispatch();
   const [state, setState] = useState<LianyState>("smiling");
-  useEffect(() => {
-    const jsConfetti = new JSConfetti();
+  const slaps = useRef<HTMLAudioElement | undefined>(
+    typeof Audio !== "undefined" ? new Audio("/audio/slaps.mp3") : undefined
+  );
+  useEffect(() => {}, []);
 
+  useEffect(() => {
+    if (state === "finish singing") {
+      setTimeout(slapsPeople, 2000);
+    }
+  }, [state]);
+
+  const slapsPeople = () => {
+    slaps.current?.play();
+    jsConfetti = new JSConfetti();
+    setTimeout(() => setState("smiling"), 1000);
+    throwConfetti();
+    setTimeout(throwConfetti, 1000);
+    setTimeout(throwConfetti, 2000);
+    setTimeout(throwConfetti, 5000);
+    dispatch(setTransition(true));
+    setTimeout(() => {
+      dispatch(setScene("question"));
+      dispatch(setTransition(false));
+    }, 1000);
+  };
+
+  const throwConfetti = () => {
     jsConfetti.addConfetti({ confettiNumber: 1000 });
-  }, []);
+  };
 
   return (
     <div className={`relative w-full h-screen ${styles.stage}`}>
