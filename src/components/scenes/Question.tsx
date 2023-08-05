@@ -15,6 +15,7 @@ const Question = () => {
     setState("happy");
     const jsConfetti = new JSConfetti();
     jsConfetti.addConfetti({ confettiNumber: 1000 });
+    finish();
   };
   const handlePreNo = () => {
     setPreNo(true);
@@ -22,6 +23,17 @@ const Question = () => {
   };
   const handleNo = () => {
     setState("cry");
+    finish();
+  };
+
+  const finish = () => {
+    setTimeout(() => {
+      dispatch(setTransition(true));
+      setTimeout(() => {
+        dispatch(setScene(""));
+        dispatch(setTransition(false));
+      }, 1000);
+    }, 3000);
   };
   return (
     <div className="flex flex-col flex-1 items-center justify-center">

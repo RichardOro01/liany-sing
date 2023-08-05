@@ -8,7 +8,7 @@ export interface SceneState {
 }
 
 const initialState: SceneState = {
-  current: "question",
+  current: "",
   transition: false,
 };
 

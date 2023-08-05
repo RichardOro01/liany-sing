@@ -31,11 +31,14 @@ const Singing = () => {
     setTimeout(throwConfetti, 1000);
     setTimeout(throwConfetti, 2000);
     setTimeout(throwConfetti, 5000);
-    dispatch(setTransition(true));
+
     setTimeout(() => {
-      dispatch(setScene("question"));
-      dispatch(setTransition(false));
-    }, 6000);
+      dispatch(setTransition(true));
+      setTimeout(() => {
+        dispatch(setScene("question"));
+        dispatch(setTransition(false));
+      }, 1000);
+    }, 10000);
   };
 
   const throwConfetti = () => {

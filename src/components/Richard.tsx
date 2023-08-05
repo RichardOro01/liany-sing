@@ -57,11 +57,11 @@ const Richard: React.FC<RichardProps> = ({ state, className }) => {
         clearInterval(blinkTimer);
         setCurrentEyes(happyEyes);
         setCurrentMouth(smilingMouth);
+        break;
       case "cry":
         setCurrentMouth(sadMouth);
         clearInterval(blinkTimer);
         setCurrentEyes(cryEyes);
-        break;
         break;
       default:
         setCurrentMouth(smilingMouth);
