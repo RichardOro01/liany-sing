@@ -10,6 +10,7 @@ import { setScene, setTransition } from "@/core/stores/scene";
 const Singing = () => {
   let jsConfetti: JSConfetti;
   const dispatch = useDispatch();
+  const [showPlay, setShowPlay] = useState(true);
   const [loadedAll, setLoadedAll] = useState(false);
   const [state, setState] = useState<LianyState>("smiling");
   const slaps = useRef<HTMLAudioElement | undefined>(
@@ -19,6 +20,7 @@ const Singing = () => {
   const handleSing = () => {
     if (state !== "singing") {
       setState("singing");
+      setShowPlay(false);
     }
   };
 
@@ -84,7 +86,7 @@ const Singing = () => {
         <h1
           className={`bottom-10 right-10 fixed animate-fade-down animate-delay-[3s] font-semibold text-5xl font-[cursive] ${
             fontStyles.neonText2
-          } ${state === "singing" && styles.fade}`}
+          } ${!showPlay && styles.fade}`}
           onClick={handleSing}
         >
           Sing
