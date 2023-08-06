@@ -8,6 +8,8 @@ import head from "../assets/sprites/Liany/head.webp";
 import hair from "../assets/sprites/Liany/hair.webp";
 import openEyes from "../assets/sprites/eyes/open.webp";
 import closedEyes from "../assets/sprites/eyes/closed.webp";
+import rightEyes from "../assets/sprites/eyes/right.webp";
+import leftEyes from "../assets/sprites/eyes/left.webp";
 import guitar from "../assets/guitar.webp";
 import closedMouth from "../assets/sprites/mouth/closed mouth.webp";
 import openMouth from "../assets/sprites/mouth/open mouth.webp";
@@ -235,8 +237,19 @@ const Liany: React.FC<LianyProps> = ({
   };
 
   useEffect(() => {
-    if (loaded === 14) {
+    if (loaded === 18) {
       onLoad();
+      stopBlinking();
+      setTimeout(() => {
+        setCurrentEyes(leftEyes);
+      }, 1000);
+      setTimeout(() => {
+        setCurrentEyes(rightEyes);
+      }, 1500);
+      setTimeout(() => {
+        setCurrentEyes(openEyes);
+      }, 2000);
+      setTimeout(startBlinking, 2000);
     }
   }, [loaded]);
 
@@ -245,10 +258,20 @@ const Liany: React.FC<LianyProps> = ({
     setTimeout(() => setCurrentEyes(openEyes), 200);
   };
 
+  const startBlinking = () => {
+    if (blinkTimer) clearInterval(blinkTimer);
+    setBlinkTimer(setInterval(blink, 5000));
+  };
+
+  const stopBlinking = () => {
+    if (blinkTimer) clearInterval(blinkTimer);
+    setBlinkTimer(void 0);
+  };
+
   useEffect(() => {
     audio.current?.addEventListener("loadedmetadata", handleLoad);
     if (audio.current) audio.current.src = "/audio/singing.mp3";
-    setBlinkTimer(setInterval(blink, 5000));
+    startBlinking();
     return () => clearInterval(blinkTimer);
   }, []);
 
@@ -347,6 +370,34 @@ const Liany: React.FC<LianyProps> = ({
       <Image
         src={closedMouth}
         alt="mouth"
+        className="w-0"
+        draggable={false}
+        onLoad={handleLoad}
+      />
+      <Image
+        src={openEyes}
+        alt="eyes"
+        className="w-0"
+        draggable={false}
+        onLoad={handleLoad}
+      />
+      <Image
+        src={closedEyes}
+        alt="eyes"
+        className="w-0"
+        draggable={false}
+        onLoad={handleLoad}
+      />
+      <Image
+        src={rightEyes}
+        alt="eyes"
+        className="w-0"
+        draggable={false}
+        onLoad={handleLoad}
+      />
+      <Image
+        src={leftEyes}
+        alt="eyes"
         className="w-0"
         draggable={false}
         onLoad={handleLoad}
