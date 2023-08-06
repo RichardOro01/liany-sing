@@ -6,7 +6,8 @@ import rightForearm from "../assets/sprites/Liany/right forearm.webp";
 import leftForearm from "../assets/sprites/Liany/left forearm.webp";
 import head from "../assets/sprites/Liany/head.webp";
 import hair from "../assets/sprites/Liany/hair.webp";
-import eyes from "../assets/sprites/eyes/open.webp";
+import openEyes from "../assets/sprites/eyes/open.webp";
+import closedEyes from "../assets/sprites/eyes/closed.webp";
 import guitar from "../assets/guitar.webp";
 import closedMouth from "../assets/sprites/mouth/closed mouth.webp";
 import openMouth from "../assets/sprites/mouth/open mouth.webp";
@@ -159,6 +160,9 @@ const Liany: React.FC<LianyProps> = ({
     useState<StaticImageData>(smilingMouth);
   const [timer, setTimer] = useState<NodeJS.Timer>();
   const [loaded, setLoaded] = useState<number>(0);
+  const [blinkTimer, setBlinkTimer] = useState<NodeJS.Timer>();
+  const [currentEyes, setCurrentEyes] = useState<StaticImageData>(openEyes);
+
   const audio = useRef<HTMLAudioElement | undefined>(
     typeof Audio !== "undefined" ? new Audio("") : undefined
   );
@@ -236,9 +240,16 @@ const Liany: React.FC<LianyProps> = ({
     }
   }, [loaded]);
 
+  const blink = () => {
+    setCurrentEyes(closedEyes);
+    setTimeout(() => setCurrentEyes(openEyes), 200);
+  };
+
   useEffect(() => {
     audio.current?.addEventListener("loadedmetadata", handleLoad);
     if (audio.current) audio.current.src = "/audio/singing.mp3";
+    setBlinkTimer(setInterval(blink, 5000));
+    return () => clearInterval(blinkTimer);
   }, []);
 
   return (
@@ -267,7 +278,7 @@ const Liany: React.FC<LianyProps> = ({
         onLoad={handleLoad}
       />
       <Image
-        src={eyes}
+        src={currentEyes}
         alt="eyes"
         className={`absolute top-32 left-[72px] w-44`}
         draggable={false}
