@@ -10,6 +10,7 @@ const Question = () => {
   const [preNo, setPreNo] = useState(false);
   const [dialoging, setDialoging] = useState(false);
   const [state, setState] = useState<RichardState>("smiling");
+  const [loaded, setLoaded] = useState(false);
 
   const handleYes = () => {
     setState("happy");
@@ -35,37 +36,46 @@ const Question = () => {
       }, 1000);
     }, 3000);
   };
+
+  const handleLoaded = () => {
+    dispatch(setTransition(false));
+    setTimeout(() => setLoaded(true), 1000);
+  };
   return (
     <div className="flex flex-col flex-1 items-center justify-center">
-      <Richard state={dialoging ? "talking" : state} />
-      {state !== "happy" && state !== "cry" && (
+      <Richard state={dialoging ? "talking" : state} onLoad={handleLoaded} />
+      {loaded && (
         <>
-          {!preNo && (
-            <Dialog
-              texts={[
-                "Vaya, de verdad que cantas lindo.",
-                "Solo quiero saber una cosa...",
-                "Podré escucharte cantar en la vida real estas vacaciones?",
-              ]}
-              {...{ setDialoging }}
-              options={[
-                { text: "Claro!", action: handleYes },
-                { text: "Nop", action: handlePreNo },
-              ]}
-            />
-          )}
-          {preNo && (
-            <Dialog
-              texts={["Oh, pues soy una persona triste :/"]}
-              {...{ setDialoging }}
-              options={[
-                { text: "Era broma, claro que sí!", action: handleYes },
-                {
-                  text: "Lo siento, ponte a escuchar el audio repetido y ya.",
-                  action: handleNo,
-                },
-              ]}
-            />
+          {state !== "happy" && state !== "cry" && (
+            <>
+              {!preNo && (
+                <Dialog
+                  texts={[
+                    "Vaya, de verdad que cantas lindo.",
+                    "Solo quiero saber una cosa...",
+                    "Podré escucharte cantar en la vida real estas vacaciones?",
+                  ]}
+                  {...{ setDialoging }}
+                  options={[
+                    { text: "Claro!", action: handleYes },
+                    { text: "Nop", action: handlePreNo },
+                  ]}
+                />
+              )}
+              {preNo && (
+                <Dialog
+                  texts={["Oh, pues soy una persona triste :/"]}
+                  {...{ setDialoging }}
+                  options={[
+                    { text: "Era broma, claro que sí!", action: handleYes },
+                    {
+                      text: "Lo siento, ponte a escuchar el audio repetido y ya.",
+                      action: handleNo,
+                    },
+                  ]}
+                />
+              )}
+            </>
           )}
         </>
       )}
