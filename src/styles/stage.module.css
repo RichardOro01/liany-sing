@@ -21,16 +21,25 @@
 
 .liany {
   top: -40px;
-  @media only screen and (min-height: 698px) {
+}
+
+@media only screen and (min-height: 698px) {
+  .liany {
     top: 20px;
   }
-  @media only screen and (min-height: 798px) {
+}
+@media only screen and (min-height: 798px) {
+  .liany {
     top: 100px;
   }
-  @media only screen and (min-height: 887px) {
+}
+@media only screen and (min-height: 887px) {
+  .liany {
     top: 160px;
   }
-  @media only screen and (min-height: 987px) {
+}
+@media only screen and (min-height: 987px) {
+  .liany {
     top: 240px;
   }
 }
