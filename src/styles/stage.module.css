@@ -18,3 +18,19 @@
 .fade {
   animation: fade-down 1s reverse forwards;
 }
+
+.liany {
+  top: -40px;
+  @media only screen and (min-height: 698px) {
+    top: 20px;
+  }
+  @media only screen and (min-height: 798px) {
+    top: 100px;
+  }
+  @media only screen and (min-height: 887px) {
+    top: 160px;
+  }
+  @media only screen and (min-height: 987px) {
+    top: 240px;
+  }
+}

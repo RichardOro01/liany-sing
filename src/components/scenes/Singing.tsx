@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/stage.module.css";
 import fontStyles from "@/styles/neon.module.css";
-import micro from "@/assets/micro.webp";
 import Liany, { LianyState } from "../Liany";
 import JSConfetti from "js-confetti";
 import { useDispatch } from "react-redux";
@@ -34,7 +33,7 @@ const Singing = () => {
   };
 
   useEffect(() => {
-    if (loaded === 4) {
+    if (loaded === 3) {
       setLoadedAll(true);
       dispatch(setTransition(false));
     }
@@ -70,13 +69,7 @@ const Singing = () => {
     <div className={`relative w-full h-screen ${styles.stage}`}>
       <Liany
         {...{ state, setState }}
-        className="top-[60px] left-1/2 -translate-x-1/2 absolute"
-        onLoad={handleLoad}
-      />
-      <Image
-        src={micro}
-        alt="micro"
-        className="absolute w-28 top-[330px] left-[40%] -translate-x-1/2"
+        className={`${styles.liany} left-1/2 -translate-x-1/2 absolute`}
         onLoad={handleLoad}
       />
       <Image

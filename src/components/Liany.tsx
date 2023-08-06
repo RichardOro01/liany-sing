@@ -14,6 +14,7 @@ import semiopenMouth from "../assets/sprites/mouth/semiopen mouth.webp";
 import sadMouth from "../assets/sprites/mouth/sad mouth.webp";
 import smilingMouth from "../assets/sprites/mouth/smiling mouth.webp";
 import styles from "../styles/liany.module.css";
+import micro from "@/assets/micro.webp";
 
 interface LianyProps {
   state: LianyState;
@@ -230,7 +231,7 @@ const Liany: React.FC<LianyProps> = ({
   };
 
   useEffect(() => {
-    if (loaded === 13) {
+    if (loaded === 14) {
       onLoad();
     }
   }, [loaded]);
@@ -337,6 +338,12 @@ const Liany: React.FC<LianyProps> = ({
         alt="mouth"
         className="w-0"
         draggable={false}
+        onLoad={handleLoad}
+      />
+      <Image
+        src={micro}
+        alt="micro"
+        className="absolute w-28 top-[270px] left-[60px] "
         onLoad={handleLoad}
       />
     </div>
