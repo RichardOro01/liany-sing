@@ -159,7 +159,7 @@ const Liany: React.FC<LianyProps> = ({
   const [timer, setTimer] = useState<NodeJS.Timer>();
   const [loaded, setLoaded] = useState<number>(0);
   const audio = useRef<HTMLAudioElement | undefined>(
-    typeof Audio !== "undefined" ? new Audio("/audio/singing.mp3") : undefined
+    typeof Audio !== "undefined" ? new Audio("") : undefined
   );
 
   const playAudio = () => {
@@ -230,10 +230,15 @@ const Liany: React.FC<LianyProps> = ({
   };
 
   useEffect(() => {
-    if (loaded === 12) {
+    if (loaded === 13) {
       onLoad();
     }
   }, [loaded]);
+
+  useEffect(() => {
+    audio.current?.addEventListener("loadedmetadata", handleLoad);
+    if (audio.current) audio.current.src = "/audio/singing.mp3";
+  }, []);
 
   return (
     <div className={`relative w-80 ${className}`} onClick={playAudio}>

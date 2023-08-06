@@ -14,7 +14,7 @@ const Singing = () => {
   const [loadedAll, setLoadedAll] = useState(false);
   const [state, setState] = useState<LianyState>("smiling");
   const slaps = useRef<HTMLAudioElement | undefined>(
-    typeof Audio !== "undefined" ? new Audio("/audio/slaps.mp3") : undefined
+    typeof Audio !== "undefined" ? new Audio("") : undefined
   );
   const [loaded, setLoaded] = useState(0);
   const handleSing = () => {
@@ -34,12 +34,16 @@ const Singing = () => {
   };
 
   useEffect(() => {
-    console.log(loaded);
-    if (loaded === 3) {
+    if (loaded === 4) {
       setLoadedAll(true);
       dispatch(setTransition(false));
     }
   }, [loaded]);
+
+  useEffect(() => {
+    slaps.current?.addEventListener("loadedmetadata", handleLoad);
+    if (slaps.current) slaps.current.src = "/audio/slaps.mp3";
+  }, []);
 
   const slapsPeople = () => {
     slaps.current?.play();
@@ -82,6 +86,7 @@ const Singing = () => {
         height={0}
         onLoad={handleLoad}
       />
+
       {loadedAll && (
         <h1
           className={`bottom-10 right-10 fixed animate-fade-down animate-delay-[3s] font-semibold text-5xl font-[cursive] ${

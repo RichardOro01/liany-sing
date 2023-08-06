@@ -13,7 +13,7 @@ const initialState: SceneState = {
 };
 
 export const sceneSlice = createSlice({
-  name: "domain",
+  name: "scene",
   initialState,
   reducers: {
     setScene: (state, action: PayloadAction<Scene>) => {
