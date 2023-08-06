@@ -193,6 +193,8 @@ const Liany: React.FC<LianyProps> = ({
       case "serious":
       case "finish singing":
         setCurrentMouth(closedMouth);
+        setCurrentEyes(openEyes);
+        startBlinking();
         break;
       case "smiling":
         setCurrentMouth(smilingMouth);
@@ -202,6 +204,7 @@ const Liany: React.FC<LianyProps> = ({
         break;
       case "singing":
         playAudio();
+        lookGuitar();
         break;
       default:
         setCurrentMouth(smilingMouth);
@@ -219,6 +222,23 @@ const Liany: React.FC<LianyProps> = ({
         currentMouth === openMouth ? closedMouth : openMouth
       );
     }
+  };
+
+  const lookGuitar = () => {
+    stopBlinking();
+    setBlinkTimer(
+      setInterval(() => {
+        const blink = Number.parseInt(Math.random().toFixed(0));
+        if (blink) setCurrentEyes(closedEyes);
+        setTimeout(
+          () =>
+            setCurrentEyes(
+              [leftEyes, openEyes][Number.parseInt(Math.random().toFixed(0))]
+            ),
+          200
+        );
+      }, 3000)
+    );
   };
 
   useEffect(() => {
