@@ -241,7 +241,7 @@ const Liany: React.FC<LianyProps> = ({
   }, []);
 
   return (
-    <div className={`relative w-80 ${className}`} onClick={playAudio}>
+    <div className={`relative w-80 ${className}`}>
       <Image
         src={idle}
         alt="Liany"

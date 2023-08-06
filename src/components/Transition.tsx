@@ -23,8 +23,8 @@ const Transition = () => {
       {show && (
         <>
           {transition && (
-            <div className="fixed top-0 left-0 h-screen w-screen bg-white z-50 animate-fade-down">
-              <div className="fixed flex flex-row bottom-10 right-10 gap-2 items-center">
+            <div className="fixed top-0 left-0 h-screen w-screen bg-white z-50 animate-fade-down flex flex-col justify-center items-center">
+              <div className="flex flex-row gap-2 items-center">
                 <Spin size="small" />
                 <span className="text-base text-slate-800">loading...</span>
               </div>
