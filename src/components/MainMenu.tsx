@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../styles/neon.module.css";
 import { Button } from "antd";
 import { useDispatch } from "react-redux";
@@ -13,6 +13,12 @@ const MainMenu = () => {
       dispatch(setScene("hello"));
     }, 1000);
   };
+
+  useEffect(() => {
+    fetch("/audio/singing.mp3");
+    fetch("/audio/slaps.mp3");
+  }, []);
+
   return (
     <div className="flex flex-col items-center gap-8 p-4 py-8">
       <div

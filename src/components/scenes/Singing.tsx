@@ -84,7 +84,7 @@ const Singing = () => {
 
       {loadedAll && (
         <h1
-          className={`bottom-10 right-10 fixed animate-fade-down animate-delay-[3s] font-semibold text-5xl font-[cursive] ${
+          className={`cursor-pointer bottom-10 right-10 fixed animate-fade-down animate-delay-[3s] font-semibold text-5xl font-[cursive] ${
             fontStyles.neonText2
           } ${!showPlay && styles.fade}`}
           onClick={handleSing}
